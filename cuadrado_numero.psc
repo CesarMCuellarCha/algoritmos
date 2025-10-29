@@ -1,0 +1,7 @@
+Algoritmo cuadrado_numero
+	Definir numero, cuadrado Como Entero
+	Escribir "Ingrese número entero: "
+	Leer numero
+	cuadrado = numero*numero
+	Escribir "El cuadrado de ",numero, " es ", cuadrado
+FinAlgoritmo
