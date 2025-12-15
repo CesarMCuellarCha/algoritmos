@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<title>Examen Competencias Matemáticas - SENA</title>
+<style>
+  body{font-family:Arial;margin:20px}
+  h1,h2,h3,h4{color:#0b5394}
+  .question{margin-bottom:12px}
+  .question p{font-weight:bold}
+  #timer{color:red;font-weight:bold;margin:10px 0}
+  button{padding:10px 20px;font-size:16px}
+  #resultado{margin-top:20px;font-size:18px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<!-- ENCABEZADO -->
+<div style="display:flex;align-items:center;gap:15px;">
+<img src="logoSena.png" width="20" class="w-25">
+<div class="ms-5">
+<h3>SERVICIO NACIONAL DE APRENDIZAJE – SENA</h1>
+<h4>Tecnólogo en Análisis y Desarrollo de Software</h2>
+<h4>Ficha: 3312932</h3>
+<h4>Evaluación Competencia de Matemáticas</h3>
+</div>
+
+</div>
+<hr>
+
+  <p>
+  <b>Instructor:</b> César Marino Cuéllar chacón<br>
+  <b>Centro de Formación:</b> Centro de Teleinformática y Producción Industrial<br>
+  <b>Fecha:</b> 15/12/2025
+  </p>
+<hr>
+<div id="timer"></div>
+<hr>
+<label><b>Nombre del aprendiz:</b></label><br>
+<input type="text" id="nombre" required class="form-control" placeholder="Aquí su nombre">  
+
+<hr>
+
+<form id="examen">
+
+    <!-- ================= NIVEL BÁSICO (1–20) ================= -->
+    <script>
+    const preguntasBasicas = [
+    ['1. Perímetro de un cuadrado de lado 6 cm','24','12','36',0],
+    ['2. Área de un rectángulo 5x4','20','9','10',0],
+    ['3. 1 km equivale a','1000 m','100 m','10 m',0],
+    ['4. Área de un triángulo base 10 altura 4','20','40','14',0],
+    ['5. Volumen de un cubo lado 3','27','9','18',0],
+    ['6. Conversión 500 g a kg','0.5','5','50',0],
+    ['7. Traslación geométrica significa','Desplazar figura','Girar','Reflejar',0],
+    ['8. Punto (0,0) es','Origen','Eje x','Eje y',0],
+    ['9. 2x=10 entonces x=','5','10','2',0],
+    ['10. Media de 2,4,6','4','6','3',0],
+    ['11. Área de círculo radio 1 (π≈3.14)','3.14','6.28','1',0],
+    ['12. 1 hora equivale a','60 min','100 min','30 min',0],
+    ['13. Plano cartesiano tiene','2 ejes','1 eje','3 ejes',0],
+    ['14. x+3=7 entonces x=','4','10','3',0],
+    ['15. 10% de 200 es','20','10','30',0],
+    ['16. Relación y=2x es','Directa','Inversa','Nula',0],
+    ['17. Si un producto aumenta su precio de $80.000 a $96.000, ¿cuál fue el porcentaje de incremento?','20%','10%','2%',0],
+    ['18. Punto (2,3) está en cuadrante','I','II','IV',0],
+    ['19. 3 metros son','300 cm','30 cm','3 cm',0],
+    ['20. Resultado de 3+4+3/3','8','3.3','5',0]
+    ];
+    </script>
+
+    <!-- ================= NIVEL INTERMEDIO (21–35) ================= -->
+    <script>
+    const preguntasIntermedias = [
+    ['21. 2x+4=10, x=','3','2','4',0],
+    ['22. Sistema: x+y=6, x=2. y=?','4','6','8',0],
+    ['23. Subconjunto representativo de la población en estadistica se conoce como:','Muestra','Variable','Dato',0],
+    ['24. Pendiente de y=2x+1','2','1','0',0],
+    ['25. Media de 4,6,10','6.67','8','5',0],
+    ['26. Conversión 2.5 kg a g','2500','25','250',0],
+    ['27. Área trapecio bases 6 y 4, h=3','15','30','10',0],
+    ['28. Punto (-2,3) está en el cuadrante','II','I','III',0],
+    ['29. si x²=9, x=?','±3','9','3',0],
+    ['30. Sistema 2x=8','x=4','x=2','x=8',0],
+    ['31. Gráfica de y=x² es','Parábola','Recta','Circunferencia',0],
+    ['32. Moda de 1,2,2,3','2','1','3',0],
+    ['33. 1 m³ equivale a','1000 L','100 L','10 L',0],
+    ['34. Error de cálculo es','Resultado incorrecto','Procedimiento válido','Dato exacto',0],
+    ['35. Representar funciones permite','Analizar variables','Eliminar datos','Modificar valores',0]
+    ];
+    </script>
+
+    <!-- ================= NIVEL AVANZADO (36–50) ================= -->
+    <script>
+    const preguntasAvanzadas = [
+    ['36. si x²-4=0, x=?','±2','4','2',0],
+    ['37. Sistema: x+y=5, x-y=1. x=?','3','2','4',0],
+    ['38. Media de 5,5,5','5','15','0',0],
+    ['39. Varianza cero indica','Datos iguales','Alta dispersión','Error',0],
+    ['40. y=mx+b, b es','Intercepto','Pendiente','Variable',0],
+    ['41. Conversión 3 h a min','180','30','300',0],
+    ['42. Área círculo r=2','12.56','6.28','4',0],
+    ['43. Punto (0,5) está sobre','Eje y','Eje x','Origen',0],
+    ['44. Inferir es','Sacar conclusiones','Copiar datos','Eliminar errores',0],
+    ['45. Función lineal es','y=ax+b','y=ax²','y=1/x',0],
+    ['46. Volumen cilindro r=1 h=3','9.42','6.28','3',0],
+    ['47. Proporcionalidad inversa','xy=k','y=mx','y=x²',0],
+    ['48. Verificar solución implica','Comprobar','Adivinar','Ignorar',0],
+    ['49. Error sistemático es','Repetitivo','Aleatorio','Nulo',0],
+    ['50. Uso TIC en matemáticas permite','Automatizar','Dificultar','Eliminar cálculos',0]
+    ];
+    </script>
+
+    <div id="preguntas">
+
+    </div>
+ 
+
+</form>
+ 
+  <div>
+      <button id= "btnCalcular" class="btn btn-secondary">Finalizar examen</button>
+    </div>
+<div id="resultado"></div>
+
+<script>
+  let btnCalcular = document.querySelector("#btnCalcular")
+// Render preguntas
+const contenedor=document.getElementById('preguntas');
+const todas=[...preguntasBasicas,...preguntasIntermedias,...preguntasAvanzadas];
+
+todas.forEach((p,i)=>{
+  const div=document.createElement('div');
+  div.className='question';
+  const opciones=[p[1],p[2],p[3]].sort(()=>Math.random()-0.5);
+  div.innerHTML=`<p>${p[0]}</p>`+opciones.map(o=>`<input type="radio" class="form-check-input" required name="q${i+1}" value="${o===p[1]?1:0}"> ${o}<br>`).join('');
+  contenedor.appendChild(div);
+});
+
+// Temporizador 90 min
+let tiempo=5400;
+setInterval(()=>{
+ const m=Math.floor(tiempo/60);
+ const s=tiempo%60;
+ document.getElementById('timer').textContent=`⏱️ Tiempo restante: ${m}:${s.toString().padStart(2,'0')}`;
+ tiempo--;
+ if(tiempo<0)calcularResultado();
+},1000);
+
+btnCalcular.addEventListener("click",calcularResultado)
+
+function calcularResultado(){
+  const nombre=document.getElementById('nombre').value.trim();
+  if(!nombre){swal.fire("Evaluación Matemáticas", 'Ingrese el nombre','info');return;}
+    let total=0;
+    let cantidad=0
+    for(let i=1;i<=50;i++){
+      const r=document.querySelector(`input[name=q${i}]:checked`);
+      if(r) cantidad++;
+      if(r&&r.value==1){
+        total++;
+      }
+      
+       
+  }
+  if(cantidad==50){
+    const nota=(total/50*5).toFixed(1);
+    const estado=nota>=3?'APROBADO':'NO APROBADO';
+    let texto = `<hr><b>Aprendiz:</b> ${nombre}<br><b>Aciertos:</b> ${total}/50<br><b>Nota:</b> ${nota}/5.0<br><b>Estado:</b> ${estado}`
+    swal.fire("Resultado Evaluación  ",texto, "info")
+    document.querySelector("#examen").reset()
+    //document.getElementById('resultado').innerHTML=`<hr><b>Aprendiz:</b> ${nombre}<br><b>Aciertos:</b> ${total}/50<br><b>Nota:</b> ${nota}/5.0<br><b>Estado:</b> ${estado}`;
+  }else{
+    swal.fire("Evaluación Matemáticas", `${nombre}, falta por responder ${50-cantidad} pregunta(s)`,"info")
+  }
+  
+}
+</script>
+</body>
+</html>
